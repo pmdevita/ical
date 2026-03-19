@@ -163,6 +163,14 @@ class RecurrenceId(BaseModel):
         validate_assignment = True
         populate_by_name = True
 
+    def __eq__(self, other):
+        if not isinstance(other, RecurrenceId):
+            return NotImplemented
+        return self.date == other.date and self.this_and_future == other.this_and_future
+
+    def __hash__(self):
+        return hash((self.date, self.this_and_future))
+
     @classmethod
     def to_value(cls, recurrence_id: str) -> datetime.datetime | datetime.date:
         """Convert a string RecurrenceId into a date or time value."""
