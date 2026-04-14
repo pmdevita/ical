@@ -39,7 +39,7 @@ def _recurrence_id_for(dt: _DateOrDatetime) -> RecurrenceId:
     # the context of dtstart which may have a timezone.
     if isinstance(dt, datetime.datetime) and dt.tzinfo:
         dt = dt.replace(tzinfo=None)
-    return RecurrenceId.__parse_property_value__(dt)
+    return RecurrenceId.model_validate(RecurrenceId.__parse_property_value__(dt))
 
 
 class FilteredRecurrenceIterable(Iterable[_DateOrDatetime]):
