@@ -77,10 +77,10 @@ def test_recurrence_id_ignore_params() -> None:
 
 def test_invalid_recurrence_id() -> None:
     """Test for a recurrence id that is not a valid DATE or DATE-TIME string."""
-    model = FakeModel.model_validate(
-        {"recurrence_id": [ParsedProperty(name="recurrence_id", value="invalid")]}
-    )
-    assert model.recurrence_id == "invalid"
+    with pytest.raises(CalendarParseError):
+        FakeModel.model_validate(
+            {"recurrence_id": [ParsedProperty(name="recurrence_id", value="invalid")]}
+        )
 
 
 @pytest.mark.parametrize(
