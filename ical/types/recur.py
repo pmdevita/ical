@@ -138,9 +138,6 @@ class Range(str, enum.Enum):
     """The range of the recurrence identifier and all subsequent values."""
 
 
-RecurIdInputDict = dict[str, datetime.date | datetime.datetime | bool]
-
-
 @DATA_TYPE.register("RECURRENCE-ID", disable_value_param=True)
 class RecurrenceId(BaseModel):
     """Identifies a specific instance of a recurring calendar component.

@@ -272,7 +272,7 @@ class GenericStore(Generic[_T]):
         ]
         if not items_to_delete:
             raise self._exc(
-                f"No existing item with uid/recurrence_id: {uid}/{recurrence}"
+                f"No existing item with uid/recurrence_id: {uid}/{recurrence_id}"
             )
 
         for store_item in items_to_delete:
@@ -368,7 +368,7 @@ class GenericStore(Generic[_T]):
         ]
         if not items_to_edit:
             raise self._exc(
-                f"No existing item with uid/recurrence_id: {uid}/{recurrence}"
+                f"No existing item with uid/recurrence_id: {uid}/{recurrence_id}"
             )
 
         for store_index, store_item in items_to_edit:
