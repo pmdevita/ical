@@ -40,7 +40,9 @@ def test_recurrence_id_datetime() -> None:
             ]
         }
     )
-    assert model.recurrence_id == "20220724T120000"
+    assert model.recurrence_id == RecurrenceId(
+        date=datetime.datetime(2022, 7, 24, 12, 0)
+    )
 
 
 def test_recurrence_id_date() -> None:
@@ -49,7 +51,7 @@ def test_recurrence_id_date() -> None:
     model = FakeModel.model_validate(
         {"recurrence_id": [ParsedProperty(name="recurrence_id", value="20220724")]}
     )
-    assert model.recurrence_id == "20220724"
+    assert model.recurrence_id == RecurrenceId(date=datetime.date(2022, 7, 24))
 
 
 def test_recurrence_id_ignore_params() -> None:
@@ -68,7 +70,9 @@ def test_recurrence_id_ignore_params() -> None:
             ]
         }
     )
-    assert model.recurrence_id == "20220724T120000"
+    assert model.recurrence_id == RecurrenceId(
+        date=datetime.datetime(2022, 7, 24, 12, 0), this_and_future=True
+    )
 
 
 def test_invalid_recurrence_id() -> None:
